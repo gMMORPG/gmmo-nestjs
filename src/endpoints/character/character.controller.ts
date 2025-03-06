@@ -1,11 +1,13 @@
 import { ServerGuard } from "@database/shared/guards/server.guard";
-import { Body, Controller, Delete, Get, Post, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import { CreateCharacterModel } from "./models/create";
 import { SearchCharactersModel, SearchSpecificCharacterModel } from "./models/search";
 import { CreateCharacterService } from "./services/create";
 import { SearchCharacterService } from "./services/search";
 import { DeleteCharacterModel } from "./models/delete";
 import { DeleteCharacterService } from "./services/delete";
+import { TransferCharacterModel } from "./models/transfer";
+import { TransferCharacterService } from "./services/transfer";
 
 @Controller("character")
 @UseGuards(ServerGuard)
@@ -14,6 +16,7 @@ export class CharacterController {
 		private readonly searchService: SearchCharacterService,
 		private readonly createService: CreateCharacterService,
 		private readonly deleteService: DeleteCharacterService,
+		private readonly transferService: TransferCharacterService,
 	) {}
 
 	@Get("specific") async searchById(@Query() model: SearchSpecificCharacterModel) {
@@ -30,5 +33,10 @@ export class CharacterController {
 
 	@Delete() async delete(@Body() model: DeleteCharacterModel) {
 		return await this.deleteService.delete(model);
+	}
+
+	@Patch("transfer")
+	async transfer(@Body() model: TransferCharacterModel) {
+		return await this.transferService.transfer(model);
 	}
 }
