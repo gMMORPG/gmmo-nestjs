@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { UsersCharactersEntity } from "@database/endpoints/users/entities/users-characters";
 import { DatabaseEntity } from "../../../database/database.entity";
 
@@ -10,20 +10,14 @@ export class CharacterEntity extends DatabaseEntity {
 	@Column({ name: "skin", type: "varchar" })
 	skin: string;
 
-	@Column({ name: "direction", type: "int", default: 0 })
-	direction: number;
-
 	@Column({ name: "last_access", type: "varchar", nullable: true })
 	last_access: Date;
 
-	@Column({ name: "world", type: "int", default: 1 })
-	world: number;
+	@Column({ name: "direction_x", type: "int", default: 0 })
+	direction_x: number;
 
-	@Column({ name: "position_x", type: "int", default: 32 })
-	position_x: number;
-
-	@Column({ name: "position_y", type: "int", default: 32 })
-	position_y: number;
+	@Column({ name: "direction_y", type: "int", default: 1 })
+	direction_y: number;
 
 	@OneToMany(
 		() => UsersCharactersEntity,

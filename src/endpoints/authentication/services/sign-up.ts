@@ -32,6 +32,7 @@ export class SignUpService {
 		const user = this.repository.create({
 			email: dto.email,
 			password: hashPassword,
+			last_login: new Date().toISOString(),
 		});
 
 		try {

@@ -13,6 +13,9 @@ export class UserEntity extends DatabaseEntity {
 	@Column({ name: "last_login", type: "varchar", nullable: true })
 	last_login: Date;
 
+	@Column({ name: "max_character_slots", type: "int", default: 3 })
+	max_character_slots: number;
+
 	@OneToMany(
 		() => UsersCharactersEntity,
 		(character) => character.user,
