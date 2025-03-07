@@ -16,6 +16,9 @@ export class UserEntity extends DatabaseEntity {
 	@Column({ name: "max_character_slots", type: "int", default: 3 })
 	max_character_slots: number;
 
+	@Column({ name: "money", type: "int", default: 0 })
+	money: number;
+
 	@OneToMany(
 		() => UsersCharactersEntity,
 		(character) => character.user,

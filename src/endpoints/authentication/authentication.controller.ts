@@ -15,6 +15,7 @@ export class AuthenticationController {
 
 	@Post("sign-in")
 	public async signIn(@Body() dto: SignInModel) {
+		console.log(dto);
 		return await this.signInService.signIn(dto);
 	}
 

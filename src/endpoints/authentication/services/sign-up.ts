@@ -36,7 +36,9 @@ export class SignUpService {
 		});
 
 		try {
-			return await this.repository.save(user);
+			await this.repository.save(user);
+
+			return { message: "Sucesso ao cadastrar conta!" };
 		} catch (error) {
 			if (error instanceof QueryFailedError && error.message.includes("SQLITE_CONSTRAINT")) {
 				throw new ConflictException("Ops! O email informado já está em uso por outro jogador!");
