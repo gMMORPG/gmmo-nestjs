@@ -2,7 +2,11 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CharacterEntity } from "../entities/character";
-import { SearchCharactersModel, SearchSpecificCharacterModel } from "../models/search";
+import {
+	SearchCharactersModel,
+	SearchOwnCharacterModel,
+	SearchSpecificCharacterModel,
+} from "../models/search";
 import { UsersCharactersEntity } from "@databaseendpoints/users/entities/users-characters";
 import { UserEntity } from "@databaseendpoints/users/entities/user";
 
@@ -39,9 +43,32 @@ export class SearchCharacterService {
 		});
 
 		if (!result) {
-			throw new NotFoundException(`Usuário com ID ${model.id} não encontrado.`);
+			throw new NotFoundException(`Personagem com ID ${model.id} não encontrado.`);
 		}
 
 		return result;
+	}
+
+	public async searchOwnCharacter(model: SearchOwnCharacterModel): Promise<CharacterEntity> {
+		const user = await this.userRepository.findOneBy({ id: model.user_id });
+		if (!user) {
+			throw new NotFoundException(`Usuário com ID ${model.user_id} não encontrado.`);
+		}
+
+		const userCharacter = await this.usersCharacterRepository.findOne({
+			where: {
+				user: { id: model.user_id },
+				character: { id: model.character_id },
+			},
+			relations: ["character"],
+		});
+
+		if (!userCharacter) {
+			throw new NotFoundException(
+				`Personagem com ID ${model.character_id} não pertence ao usuário ${model.user_id}.`,
+			);
+		}
+
+		return userCharacter.character;
 	}
 }
