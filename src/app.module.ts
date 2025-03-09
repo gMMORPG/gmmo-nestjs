@@ -1,7 +1,7 @@
 import { DatabaseModule } from "@database/database/database.module";
 import { AuthenticationModule } from "@database/endpoints/authentication/authentication.module";
-import { CharacterModule } from "@database/endpoints/character/character.module";
 import { UserModule } from "@database/endpoints/users/user.module";
+import { ActorModule } from "@databaseendpoints/actor/actor.module";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
@@ -11,7 +11,7 @@ import { ConfigModule } from "@nestjs/config";
 		DatabaseModule,
 		AuthenticationModule,
 		UserModule,
-		CharacterModule,
+		ActorModule,
 	],
 })
 export class AppModule {}

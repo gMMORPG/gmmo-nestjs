@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany } from "typeorm";
-import { UsersCharactersEntity } from "@database/endpoints/users/entities/users-characters";
+import { UsersActorsEntity } from "@databaseendpoints/users/entities/users-actors";
 import { DatabaseEntity } from "../../../database/database.entity";
 
-@Entity("character")
-export class CharacterEntity extends DatabaseEntity {
+@Entity("actor")
+export class ActorEntity extends DatabaseEntity {
 	@Column({ name: "name", type: "varchar", unique: true })
 	name: string;
 
@@ -19,9 +19,18 @@ export class CharacterEntity extends DatabaseEntity {
 	@Column({ name: "direction_y", type: "int", default: 1 })
 	direction_y: number;
 
+	@Column({ name: "world", type: "varchar", default: "1" })
+	world: string;
+
+	@Column({ name: "position_x", type: "int", default: 64 })
+	position_x: number;
+
+	@Column({ name: "position_y", type: "int", default: 64 })
+	position_y: number;
+
 	@OneToMany(
-		() => UsersCharactersEntity,
-		(users) => users.character,
+		() => UsersActorsEntity,
+		(users) => users.actor,
 	)
-	users: UsersCharactersEntity[];
+	users: UsersActorsEntity[];
 }
