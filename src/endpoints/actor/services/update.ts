@@ -28,7 +28,6 @@ export class UpdateActorService {
 			throw new NotFoundException(`Ator com ID ${model.actor_id} não encontrado.`);
 		}
 
-		existingActor.skin = model.skin;
 		existingActor.direction_x = model.direction_x;
 		existingActor.direction_y = model.direction_y;
 		existingActor.world = model.world;

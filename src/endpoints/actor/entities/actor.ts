@@ -7,9 +7,6 @@ export class ActorEntity extends DatabaseEntity {
 	@Column({ name: "name", type: "varchar", unique: true })
 	name: string;
 
-	@Column({ name: "skin", type: "varchar" })
-	skin: string;
-
 	@Column({ name: "last_access", type: "varchar", nullable: true })
 	last_access: Date;
 

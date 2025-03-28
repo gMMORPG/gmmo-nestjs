@@ -12,10 +12,6 @@ export class UpdateActorModel {
 	@IsNotEmpty({ message: "O id do personagem deve ser informado!" })
 	actor_id: number;
 
-	@IsString({ message: "A skin deve ser um texto!" })
-	@IsNotEmpty({ message: "A skin é um campo obrigatório!" })
-	skin: string;
-
 	@IsNumber({}, { message: "A direção X deve ser um número válido!" })
 	@Transform(({ value }) => Number.parseInt(value, 10))
 	@IsNotEmpty({ message: "A direção X deve ser informado!" })

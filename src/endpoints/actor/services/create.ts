@@ -35,7 +35,6 @@ export class CreateActorService {
 
 		const actor = this.actorRepository.create({
 			name: model.name,
-			skin: model.skin,
 		});
 
 		await this.actorRepository.save(actor);

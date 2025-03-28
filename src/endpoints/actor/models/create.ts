@@ -10,8 +10,4 @@ export class CreateActorModel {
 	@IsString({ message: "O nome deve ser um texto!" })
 	@IsNotEmpty({ message: "O nome é um campo obrigatório!" })
 	name: string;
-
-	@IsString({ message: "A skin deve ser um texto!" })
-	@IsNotEmpty({ message: "A skin é um campo obrigatório!" })
-	skin: string;
 }
